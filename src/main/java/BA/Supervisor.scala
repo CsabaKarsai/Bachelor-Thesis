@@ -23,7 +23,6 @@ object Supervisor {
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
         (w1 ? Request(id)).pipeTo(sender())
-        println("test")
       }
     }
 
