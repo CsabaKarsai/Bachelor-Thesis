@@ -15,9 +15,6 @@ object Worker {
 
     override def receive: Receive = {
       case Request(id) => {
-        //TODO: alternative to Thread.sleep(), reason: no Messages can be accepted while asleep
-        //Thread.sleep((negExNumber(2) * 1000).toLong)
-        //Thread.sleep(500)
         var s = System.currentTimeMillis()
         var break = 0
         while(break == 0){

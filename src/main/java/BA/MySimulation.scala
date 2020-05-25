@@ -9,10 +9,10 @@ import io.gatling.core.action.builder.ActionBuilder
 import io.gatling.core.session.Session
 import io.gatling.core.structure.ScenarioContext
 
-class ThirdSimulation extends Simulation {
+class MySimulation extends Simulation {
 
   val config = ConfigFactory.load()
-  implicit val system = ActorSystem("ThirdSimulation", config)
+  implicit val system = ActorSystem("MySimulation", config)
 
   // gatling-akka protocol configuration
   val akkaConfig = akkaActor.askTimeout(17)
@@ -21,7 +21,7 @@ class ThirdSimulation extends Simulation {
   val actorUnderTest = system.actorOf(Supervisor.MySupervisor)
 
   // scenario definition
-  val s = scenario("Ding-Dong-Ding-Dong")
+  val s = scenario("Request-Response")
     .exec {
     new ActionBuilder {
       override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -29,7 +29,7 @@ class ThirdSimulation extends Simulation {
           override def name: String = "test"
 
           override def execute(session: Session): Unit = {
-            val a = akkaActor("ding-").to(actorUnderTest) ? Request(session.userId) check expectMsg(Response(session.userId)).saveAs("dong")
+            val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId) check expectMsg(Response(session.userId)).saveAs("Response")
             a.build(ctx, next) ! session
           }
         }
