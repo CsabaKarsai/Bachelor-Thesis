@@ -15,7 +15,7 @@ class ThirdSimulation extends Simulation {
   implicit val system = ActorSystem("ThirdSimulation", config)
 
   // gatling-akka protocol configuration
-  val akkaConfig = akkaActor.askTimeout(16)
+  val akkaConfig = akkaActor.askTimeout(17)
 
   // recipient actorRef
   val actorUnderTest = system.actorOf(Supervisor.MySupervisor)
@@ -39,6 +39,6 @@ class ThirdSimulation extends Simulation {
   // inject configurations
   setUp(
     s.inject(constantUsersPerSec(4) during 15)
-  ).protocols(akkaConfig).maxDuration(16)
+  ).protocols(akkaConfig).maxDuration(17)
 
 }
