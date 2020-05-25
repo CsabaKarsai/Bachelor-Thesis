@@ -19,3 +19,4 @@ buildNumber.properties
 *.iml
 out
 gen
+/.idea/workspace.xml
