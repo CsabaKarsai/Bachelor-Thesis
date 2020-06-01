@@ -38,6 +38,7 @@ class MySimulation extends Simulation {
   }
   // inject configurations
   setUp(
+    /*
     s.inject(
       nothingFor(10),
       rampUsersPerSec(0)to(4)during(10),
@@ -45,6 +46,8 @@ class MySimulation extends Simulation {
       rampUsersPerSec(4)to(0)during(10),
       nothingFor(10)
     )
+    */
+    s.inject(constantUsersPerSec(10)during(2))
   ).protocols(akkaConfig).maxDuration(125)
 
 }

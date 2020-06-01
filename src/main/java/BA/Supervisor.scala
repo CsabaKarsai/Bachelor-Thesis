@@ -22,7 +22,9 @@ object Supervisor {
       case Request(id) => {
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
-        (w1 ? Request(id)).pipeTo(sender())
+        //(w1 ? Request(id)).pipeTo(sender())
+        val timestamp = System.currentTimeMillis()
+        (w1 ? SupervisorToWorker(id, timestamp)).pipeTo(sender())
       }
     }
 

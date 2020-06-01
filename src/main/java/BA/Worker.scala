@@ -1,5 +1,7 @@
 package BA
 
+import java.io.{BufferedWriter, File, FileWriter}
+
 import akka.actor.{Actor, Props}
 
 import scala.math._
@@ -13,8 +15,27 @@ object Worker {
 
   class Worker extends Actor {
 
+    val file = new File("./results/SupervisorToWorker.txt")
+    val fw = new FileWriter(file, true)
+    val bw = new BufferedWriter(fw)
+
     override def receive: Receive = {
       case Request(id) => {
+        var s = System.currentTimeMillis()
+        var break = 0
+        while(break == 0){
+          if(System.currentTimeMillis() - s > 1000){
+            break = 1
+          }
+        }
+        sender() ! Response(id)
+      }
+      case SupervisorToWorker(id, timestamp) => {
+        println("id of request, time passed since send: " + id + ", "
+          + (System.currentTimeMillis() - timestamp))
+        bw.write("id: " + id + ", time passed: " + (System.currentTimeMillis() - timestamp) + "\n")
+        bw.close()
+        fw.close()
         var s = System.currentTimeMillis()
         var break = 0
         while(break == 0){
