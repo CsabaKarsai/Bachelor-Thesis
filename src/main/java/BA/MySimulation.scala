@@ -36,6 +36,21 @@ class MySimulation extends Simulation {
       }
     }
   }
+  val write = scenario("writeToFile")
+      .exec{
+        new ActionBuilder {
+          override def build(ctx: ScenarioContext, next: Action): Action = {
+            new Action {
+              override def name: String = "test"
+
+              override def execute(session: Session): Unit = {
+                val a = akkaActor("writeRequest").to(actorUnderTest) ? writeToFileRequest check expectMsg(writeToFileResponse).saveAs("writeResponse")
+                a.build(ctx, next) ! session
+              }
+            }
+          }
+        }
+      }
   // inject configurations
   setUp(
     /*
@@ -47,7 +62,10 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
-    s.inject(constantUsersPerSec(10)during(2))
+    s.inject(constantUsersPerSec(1)during(1)),
+    write.inject(nothingFor(3),
+      constantUsersPerSec(1)during(1)
+    )
   ).protocols(akkaConfig).maxDuration(125)
 
 }

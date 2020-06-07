@@ -26,6 +26,14 @@ object Supervisor {
         val timestamp = System.currentTimeMillis()
         (w1 ? SupervisorToWorker(id, timestamp)).pipeTo(sender())
       }
+      case writeToFileRequest => {
+        implicit val ec: ExecutionContext = context.dispatcher
+        implicit val timeout = Timeout(30 seconds)
+        for(i <- 0 to 3){
+          println(i)
+          (w1 ? writeToFileRequest).pipeTo(sender())
+        }
+      }
     }
 
   }

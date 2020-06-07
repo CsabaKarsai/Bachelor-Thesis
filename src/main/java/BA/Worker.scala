@@ -18,6 +18,8 @@ object Worker {
     val file = new File("./results/SupervisorToWorker.txt")
     val fw = new FileWriter(file, true)
     val bw = new BufferedWriter(fw)
+    var counter = 0
+    var timestampList = new Array[Long](1000)
 
     override def receive: Receive = {
       case Request(id) => {
@@ -31,11 +33,16 @@ object Worker {
         sender() ! Response(id)
       }
       case SupervisorToWorker(id, timestamp) => {
-        println("id of request, time passed since send: " + id + ", "
-          + (System.currentTimeMillis() - timestamp))
-        bw.write("id: " + id + ", time passed: " + (System.currentTimeMillis() - timestamp) + "\n")
-        bw.close()
-        fw.close()
+        if (counter == (timestampList.size - 1)){
+          for (i <- 0 to counter){
+            bw.write("" + timestampList(i) + "\n")
+          }
+          bw.close()
+          counter = 0
+        }else{
+          timestampList(counter) = System.currentTimeMillis() - timestamp
+          counter = counter + 1
+        }
         var s = System.currentTimeMillis()
         var break = 0
         while(break == 0){
@@ -44,6 +51,14 @@ object Worker {
           }
         }
         sender() ! Response(id)
+      }
+      case writeToFileRequest => {
+        for (i <- 0 to (counter - 1)){
+          bw.write("" + i + " " + timestampList(i) + "\n")
+        }
+        bw.close()
+        counter = 0
+        sender() ! writeToFileResponse
       }
     }
 
