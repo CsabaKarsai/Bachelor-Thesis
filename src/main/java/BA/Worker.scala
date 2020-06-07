@@ -22,17 +22,9 @@ object Worker {
     var timestampList = new Array[Long](1000)
 
     override def receive: Receive = {
-      case Request(id) => {
-        var s = System.currentTimeMillis()
-        var break = 0
-        while(break == 0){
-          if(System.currentTimeMillis() - s > 1000){
-            break = 1
-          }
-        }
-        sender() ! Response(id)
-      }
+
       case SupervisorToWorker(id, timestamp) => {
+
         if (counter == (timestampList.size - 1)){
           for (i <- 0 to counter){
             bw.write("" + timestampList(i) + "\n")
@@ -51,14 +43,17 @@ object Worker {
           }
         }
         sender() ! Response(id)
+
       }
       case writeToFileRequest => {
+
         for (i <- 0 to (counter - 1)){
           bw.write("" + i + " " + timestampList(i) + "\n")
         }
         bw.close()
         counter = 0
         sender() ! writeToFileResponse
+
       }
     }
 
