@@ -20,56 +20,74 @@ object Worker {
     var myWorkerID = workerID
     println("myWorkerID: " + myWorkerID + " time: " + System.currentTimeMillis())
 
-    //fields for Worker<i> file
-    val workerFile = new File("./results/Worker" + myWorkerID)
-
     //fields for SupervisorToWorker file
     val supervisorToWorkerfile = new File("./results/SupervisorToWorker.txt")
-    val fw = new FileWriter(supervisorToWorkerfile, true)
-    val bw = new BufferedWriter(fw)
-    var counter = 0
-    var timestampList = new Array[Long](1000)
+    val supervisorToWorkerFw = new FileWriter(supervisorToWorkerfile, true)
+    val supervisorToWorkerBw = new BufferedWriter(supervisorToWorkerFw)
+    var supervisorToWorkerCounter = 0
+    var supervisorToWorkerTimestampList = new Array[String](1000)
 
     override def receive: Receive = {
 
       case SupervisorToWorker(id, timestamp) => {
 
-        if (counter == (timestampList.size - 1)){
-          for (i <- 0 to counter){
-            bw.write("" + timestampList(i) + "\n")
+        val messageArriveTime = System.currentTimeMillis()
+
+        if (supervisorToWorkerCounter == (supervisorToWorkerTimestampList.size - 1)){
+          //write array to file
+          for (i <- 0 to supervisorToWorkerCounter){
+            supervisorToWorkerBw.write(supervisorToWorkerTimestampList(i) + "\n")
           }
-          bw.close()
-          counter = 0
-        }else{
-          timestampList(counter) = System.currentTimeMillis() - timestamp
-          counter = counter + 1
+          supervisorToWorkerBw.close()
+          //handle lost request
+          supervisorToWorkerCounter = 0
+          supervisorToWorkerTimestampList(supervisorToWorkerCounter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime)
+          supervisorToWorkerCounter = supervisorToWorkerCounter + 1
+          sender() ! Response(id)
         }
-        var s = System.currentTimeMillis()
-        var break = 0
-        while(break == 0){
-          if(System.currentTimeMillis() - s > 1000){
-            break = 1
-          }
+        else{
+          supervisorToWorkerTimestampList(supervisorToWorkerCounter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime)
+          supervisorToWorkerCounter = supervisorToWorkerCounter + 1
+          sender() ! Response(id)
         }
-        sender() ! Response(id)
 
       }
       case writeToFileRequest => {
 
-        for (i <- 0 to (counter - 1)){
-          bw.write("" + i + " " + timestampList(i) + "\n")
+        for (i <- 0 to (supervisorToWorkerCounter - 1)){
+          supervisorToWorkerBw.write(supervisorToWorkerTimestampList(i) + "\n")
         }
-        bw.close()
-        counter = 0
+        supervisorToWorkerBw.close()
+        supervisorToWorkerCounter = 0
         sender() ! writeToFileResponse
 
       }
     }
 
-    def negExNumber(lambda : Double) : Double = {
+    def getNegExNumber(lambda : Double) : Double = {
       val random = new Random(System.currentTimeMillis())
       val randomNumber = random.nextDouble()
       log(1 - randomNumber)  / (-lambda)
+    }
+
+    def simulateWorkAndCalcLine(id: Long, timestamp: Long, messageArriveTime: Long) : String = {
+      var firstHalfToWrite = ("Request id: " + (id)
+        + " Wartezeit vor Bearbeitung: " + (System.currentTimeMillis() - timestamp))
+      //später durch negEx ersetzen
+      workFor(1000)
+      var secondHalfToWrite = " Bearbeitungszeit :" + (System.currentTimeMillis() - messageArriveTime)
+      var stringToWrite = firstHalfToWrite + secondHalfToWrite
+      stringToWrite
+    }
+
+    def workFor(timeInMillis: Long) : Any = {
+      var timerStartTime = System.currentTimeMillis()
+      var break = 0
+      while(break == 0){
+        if(System.currentTimeMillis() - timerStartTime > timeInMillis){
+          break = 1
+        }
+      }
     }
   }
 

@@ -62,7 +62,7 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
-    s.inject(constantUsersPerSec(1)during(1)),
+    s.inject(constantUsersPerSec(4)during(1)),
     write.inject(nothingFor(3),
       constantUsersPerSec(1)during(1)
     )
