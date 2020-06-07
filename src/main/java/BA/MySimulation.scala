@@ -62,8 +62,8 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
-    s.inject(constantUsersPerSec(4)during(1)),
-    write.inject(nothingFor(3),
+    s.inject(constantUsersPerSec(4)during(3)),
+    write.inject(nothingFor(4),
       constantUsersPerSec(1)during(1)
     )
   ).protocols(akkaConfig).maxDuration(125)
