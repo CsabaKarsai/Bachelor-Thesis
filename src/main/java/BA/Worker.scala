@@ -9,18 +9,32 @@ import scala.util.Random
 
 object Worker {
 
-  //field here
+  var workerID = 1
+
+  def updateWorkerID: Any = {
+    workerID = workerID + 1
+  }
 
   def Worker: Props = {
-    //increment field here
-    Props(new Worker)
+    Props(new Worker(workerID))
   }
 
   //make new parameter for worker -> appen to file + parameter
-  class Worker extends Actor {
+  class Worker(workerID: Int) extends Actor {
 
-    val file = new File("./results/SupervisorToWorker.txt")
-    val fw = new FileWriter(file, true)
+    //set new workerID for next Worker to be instantiated
+    updateWorkerID
+
+    //set ID of this particular worker to the one given in constructor
+    var myWorkerID = workerID
+    println("myWorkerID: " + myWorkerID + " time: " + System.currentTimeMillis())
+
+    //fields for Worker<i> file
+    val workerFile = new File("./results/Worker" + myWorkerID)
+
+    //fields for SupervisorToWorker file
+    val supervisorToWorkerfile = new File("./results/SupervisorToWorker.txt")
+    val fw = new FileWriter(supervisorToWorkerfile, true)
     val bw = new BufferedWriter(fw)
     var counter = 0
     var timestampList = new Array[Long](1000)

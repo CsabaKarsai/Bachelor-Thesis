@@ -16,13 +16,13 @@ object Supervisor {
 
   class mySupervisor extends Actor {
     val w1: ActorRef =
-      context.actorOf(RoundRobinPool(4).props(Props[Worker.Worker]), "w1")
+      //context.actorOf(RoundRobinPool(4).props(Props[Worker.Worker]), "w1")
+      context.actorOf(RoundRobinPool(4).props(Props(new Worker.Worker(Worker.workerID))))
 
     override def receive: Receive = {
       case Request(id) => {
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
-        //(w1 ? Request(id)).pipeTo(sender())
         val timestamp = System.currentTimeMillis()
         (w1 ? SupervisorToWorker(id, timestamp)).pipeTo(sender())
       }
@@ -30,7 +30,6 @@ object Supervisor {
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
         for(i <- 0 to 3){
-          println(i)
           (w1 ? writeToFileRequest).pipeTo(sender())
         }
       }
