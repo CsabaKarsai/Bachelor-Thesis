@@ -32,8 +32,8 @@ object Supervisor {
       case Request(id) => {
 
         val messageArriveTime = System.currentTimeMillis()
-        if (counter == (data.size)){
-          for (i <- 0 to (counter - 1)){
+        if (counter == data.length){
+          for (i <- 0 until counter){
             bw.write(data(i) + "\n")
           }
           counter = 0
@@ -48,7 +48,7 @@ object Supervisor {
       }
       case writeToFileRequest => {
 
-        for (i <- 0 to (counter - 1)){
+        for (i <- 0 until counter){
           bw.write(data(i) + "\n")
         }
         bw.close()

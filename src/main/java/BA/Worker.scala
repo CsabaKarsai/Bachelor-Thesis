@@ -31,8 +31,8 @@ object Worker {
       case SupervisorToWorker(id, timestamp) => {
 
         val messageArriveTime = System.currentTimeMillis()
-        if (counter == (data.size)){
-          for (i <- 0 to (counter - 1)){
+        if (counter == data.length){
+          for (i <- 0 until counter){
             bw.write(data(i) + "\n")
           }
           counter = 0
@@ -44,7 +44,7 @@ object Worker {
       }
       case writeToFileRequest => {
 
-        for (i <- 0 to (counter - 1)){
+        for (i <- 0 until counter){
           bw.write(data(i) + "\n")
         }
         bw.close()
@@ -55,7 +55,7 @@ object Worker {
     }
 
     def simulateWorkAndCalcLine(id: Long, timestamp: Long, messageArriveTime: Long) : String = {
-      var firstHalfToWrite = ("Request id: " + (id)
+      var firstHalfToWrite = ("Request id: " + id
         + " Wartezeit vor Bearbeitung: " + (System.currentTimeMillis() - timestamp))
       //später durch negEx ersetzen
       workFor(1000)
