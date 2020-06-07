@@ -7,23 +7,14 @@ import akka.actor.{Actor, Props}
 import scala.math._
 import scala.util.Random
 
+import java.util.concurrent.atomic.AtomicLong
+
 object Worker {
 
-  var workerID = 1
-
-  def updateWorkerID: Any = {
-    workerID = workerID + 1
-  }
-
-  def Worker: Props = {
-    Props(new Worker(workerID))
-  }
+  val workerID = new AtomicLong(1)
 
   //make new parameter for worker -> appen to file + parameter
-  class Worker(workerID: Int) extends Actor {
-
-    //set new workerID for next Worker to be instantiated
-    updateWorkerID
+  class Worker(workerID: Long) extends Actor {
 
     //set ID of this particular worker to the one given in constructor
     var myWorkerID = workerID

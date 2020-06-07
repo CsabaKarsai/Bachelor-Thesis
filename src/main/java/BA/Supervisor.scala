@@ -16,8 +16,7 @@ object Supervisor {
 
   class mySupervisor extends Actor {
     val w1: ActorRef =
-      //context.actorOf(RoundRobinPool(4).props(Props[Worker.Worker]), "w1")
-      context.actorOf(RoundRobinPool(4).props(Props(new Worker.Worker(Worker.workerID))))
+      context.actorOf(RoundRobinPool(4).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
     override def receive: Receive = {
       case Request(id) => {
