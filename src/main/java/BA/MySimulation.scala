@@ -29,7 +29,7 @@ class MySimulation extends Simulation {
           override def name: String = "test"
 
           override def execute(session: Session): Unit = {
-            val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId) check expectMsg(Response(session.userId)).saveAs("Response")
+            val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "default") check expectMsg(Response(session.userId, "default")).saveAs("Response")
             a.build(ctx, next) ! session
           }
         }

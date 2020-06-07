@@ -28,18 +28,33 @@ object Worker {
 
     override def receive: Receive = {
 
-      case SupervisorToWorker(id, timestamp) => {
+      case SupervisorToWorker(id, timestamp, requestType) => {
 
-        val messageArriveTime = System.currentTimeMillis()
-        if (counter == data.length){
-          for (i <- 0 until counter){
-            bw.write(data(i) + "\n")
+        if(requestType.equals("default")){
+          val messageArriveTime = System.currentTimeMillis()
+          if (counter == data.length){
+            for (i <- 0 until counter){
+              bw.write(data(i) + "\n")
+            }
+            counter = 0
           }
-          counter = 0
+          sender() ! Response(id, requestType)
+          data(counter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime, requestType, 1000)
+          counter = counter + 1
         }
-        sender() ! Response(id)
-        data(counter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime)
-        counter = counter + 1
+
+        if(requestType.equals("Worker wait 2000")){
+          val messageArriveTime = System.currentTimeMillis()
+          if (counter == data.length){
+            for (i <- 0 until counter){
+              bw.write(data(i) + "\n")
+            }
+            counter = 0
+          }
+          sender() ! Response(id, requestType)
+          data(counter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime, requestType, 2000)
+          counter = counter + 1
+        }
 
       }
       case writeToFileRequest => {
@@ -54,12 +69,13 @@ object Worker {
       }
     }
 
-    def simulateWorkAndCalcLine(id: Long, timestamp: Long, messageArriveTime: Long) : String = {
+    def simulateWorkAndCalcLine(id: Long, timestamp: Long, messageArriveTime: Long, requestType: String, ProcessingTime: Long) : String = {
       var firstHalfToWrite = ("Request id: " + id
-        + " Wartezeit vor Bearbeitung: " + (System.currentTimeMillis() - timestamp))
+        + " Waiting time: " + (System.currentTimeMillis() - timestamp))
       //später durch negEx ersetzen
-      workFor(1000)
-      var secondHalfToWrite = " Bearbeitungszeit :" + (System.currentTimeMillis() - messageArriveTime)
+      workFor(ProcessingTime)
+      var secondHalfToWrite = " Processing time: " + (System.currentTimeMillis() - messageArriveTime) +
+        " Request type: " + requestType
       var stringToWrite = firstHalfToWrite + secondHalfToWrite
       stringToWrite
     }

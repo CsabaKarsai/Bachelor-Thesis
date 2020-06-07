@@ -29,7 +29,7 @@ object Supervisor {
 
     override def receive: Receive = {
 
-      case Request(id) => {
+      case Request(id, requestType) => {
 
         val messageArriveTime = System.currentTimeMillis()
         if (counter == data.length){
@@ -41,7 +41,7 @@ object Supervisor {
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
         val timestamp = System.currentTimeMillis()
-        (w1 ? SupervisorToWorker(id, timestamp)).pipeTo(sender())
+        (w1 ? SupervisorToWorker(id, timestamp, requestType)).pipeTo(sender())
         data(counter) = "Request id: " + id + " Bearbeitungszeit: " + (System.currentTimeMillis() - messageArriveTime)
         counter = counter + 1
 
