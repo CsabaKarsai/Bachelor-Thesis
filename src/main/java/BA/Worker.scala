@@ -18,9 +18,8 @@ object Worker {
 
     //set ID of this particular worker to the one given in constructor
     var myWorkerID = workerID
-    println("myWorkerID: " + myWorkerID + " time: " + System.currentTimeMillis())
+    //println("myWorkerID: " + myWorkerID + " time: " + System.currentTimeMillis())
 
-    //fields to make write on receive possible
     val file = new File("./results/Worker" + myWorkerID + ".txt")
     val fw = new FileWriter(file, true)
     val bw = new BufferedWriter(fw)

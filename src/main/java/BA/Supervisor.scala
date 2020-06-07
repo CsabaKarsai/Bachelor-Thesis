@@ -21,7 +21,6 @@ object Supervisor {
     val w1: ActorRef =
       context.actorOf(RoundRobinPool(4).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
-    //fields to make write on receive possible
     val file = new File("./results/Supervisor.txt")
     val fw = new FileWriter(file, true)
     val bw = new BufferedWriter(fw)
