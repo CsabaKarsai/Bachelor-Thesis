@@ -9,10 +9,14 @@ import scala.util.Random
 
 object Worker {
 
+  //field here
+
   def Worker: Props = {
+    //increment field here
     Props(new Worker)
   }
 
+  //make new parameter for worker -> appen to file + parameter
   class Worker extends Actor {
 
     val file = new File("./results/SupervisorToWorker.txt")
