@@ -18,7 +18,8 @@ object Supervisor {
 
   class mySupervisor extends Actor {
 
-    val poolSize = 5
+    val poolSize = 4
+    val supervisorTimeout: Timeout = Timeout((60 * 46) seconds)
     val w1: ActorRef =
       context.actorOf(RoundRobinPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
@@ -47,7 +48,7 @@ object Supervisor {
           counter = 0
         }
         implicit val ec: ExecutionContext = context.dispatcher
-        implicit val timeout: Timeout = Timeout(30 seconds)
+        implicit val timeout: Timeout = supervisorTimeout
         val supervisorSendTime = System.nanoTime()
         (w1 ? SupervisorToWorker(id, supervisorSendTime, messageType)).pipeTo(sender())
         data(counter) = "" + id +
@@ -66,7 +67,7 @@ object Supervisor {
         bw.close()
         counter = 0
         implicit val ec: ExecutionContext = context.dispatcher
-        implicit val timeout: Timeout = Timeout(30 seconds)
+        implicit val timeout: Timeout = supervisorTimeout
         for(i <- 0 until poolSize){
           (w1 ? writeToFileRequest).pipeTo(sender())
         }

@@ -16,7 +16,7 @@ class MySimulation extends Simulation {
   implicit val system: ActorSystem = ActorSystem("MySimulation", config)
 
   // gatling-akka protocol configuration
-  val akkaConfig: AkkaProtocol = akkaActor.askTimeout(125)
+  val akkaConfig: AkkaProtocol = akkaActor.askTimeout(60 * 16)
 
   // recipient actorRef
   val actorUnderTest: ActorRef = system.actorOf(Supervisor.MySupervisor)
@@ -124,25 +124,43 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
+    /*
     default_Scenario.inject(
       constantUsersPerSec(1)during 60 * 10 randomized
     ),
+    */
     SAI_Scenario.inject(
-      constantUsersPerSec(1)during 60 * 10 randomized
+      nothingFor(60 * 1),
+      rampUsersPerSec(0)to(1)during(60 * 1),
+      constantUsersPerSec(1)during 60 * 26 randomized,
+      rampUsersPerSec(1)to(0)during(60 * 1),
+      nothingFor(60 * 1)
     ),
     UL_Scenario.inject(
-      constantUsersPerSec(2)during 60 * 10 randomized
+      nothingFor(60 * 1),
+      rampUsersPerSec(0)to(3)during(60 * 1),
+      constantUsersPerSec(3)during 60 * 26 randomized,
+      rampUsersPerSec(3)to(0)during(60 * 1),
+      nothingFor(60 * 1)
     ),
     UL_GPRS_Scenario.inject(
-      constantUsersPerSec(3)during 60 * 10 randomized
+      nothingFor(60 * 1),
+      rampUsersPerSec(0)to(4)during(60 * 1),
+      constantUsersPerSec(4)during 60 * 26 randomized,
+      rampUsersPerSec(4)to(0)during(60 * 1),
+      nothingFor(60 * 1)
     ),
     CL_Scenario.inject(
-      constantUsersPerSec(4)during 60 * 10 randomized
+      nothingFor(60 * 1),
+      rampUsersPerSec(0)to(5)during(60 * 1),
+      constantUsersPerSec(5)during 60 * 26 randomized,
+      rampUsersPerSec(5)to(0)during(60 * 1),
+      nothingFor(60 * 1)
     ),
     write_Scenario.inject(
-      nothingFor(60 * 11),
+      nothingFor(60 * 45),
       constantUsersPerSec(1)during 1
     )
-  ).protocols(akkaConfig).maxDuration(125)
+  ).protocols(akkaConfig).maxDuration(60 * 46)
 
 }
