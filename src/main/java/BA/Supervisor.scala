@@ -27,11 +27,18 @@ object Supervisor {
     var counter = 0
     var data = new Array[String](1000)
 
+    //write header
+    bw.write("id;messageArriveTime;processingTime;messagesProcessed;supervisorSendTime;messageType" + "\n")
+
+    //processedMessages
+    var processedMessages = 1
+
     override def receive: Receive = {
 
       case Request(id, messageType) => {
 
-        val messageArriveTime = System.currentTimeMillis()
+        val messageArriveTime = System.nanoTime()
+
         if (counter == data.length){
           for (i <- 0 until counter){
             bw.write(data(i) + "\n")
@@ -40,10 +47,16 @@ object Supervisor {
         }
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
-        val timestamp = System.currentTimeMillis()
-        (w1 ? SupervisorToWorker(id, timestamp, messageType)).pipeTo(sender())
-        data(counter) = "Request id: " + id + " Bearbeitungszeit: " + (System.currentTimeMillis() - messageArriveTime)
+        val supervisorSendTime = System.nanoTime()
+        (w1 ? SupervisorToWorker(id, supervisorSendTime, messageType)).pipeTo(sender())
+        data(counter) = "" + id +
+          ";" + (messageArriveTime/1000) +
+          ";" + ((System.nanoTime() - messageArriveTime) / 1000) +
+          ";" + processedMessages +
+          ";" + (supervisorSendTime / 1000) +
+          ";" + messageType
         counter = counter + 1
+        processedMessages = processedMessages + 1
 
       }
       case writeToFileRequest => {

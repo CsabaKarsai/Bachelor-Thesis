@@ -21,7 +21,7 @@ class MySimulation extends Simulation {
   val actorUnderTest = system.actorOf(Supervisor.MySupervisor)
 
   // scenario definition
-  val s = scenario("Request-Response")
+  val s1 = scenario("Request-Response")
     .exec {
       new ActionBuilder {
         override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -29,14 +29,30 @@ class MySimulation extends Simulation {
             override def name: String = "test"
 
             override def execute(session: Session): Unit = {
-              val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "2000") check expectMsg(Response(session.userId, "2000")).saveAs("Response")
+              val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "default") check expectMsg(Response(session.userId, "default")).saveAs("Response")
               a.build(ctx, next) ! session
             }
           }
         }
       }
     }
-  val write = scenario("writeToFile")
+  val s2 = scenario("SAIRequest-SAIResponse")
+    .exec {
+      new ActionBuilder {
+        override def build(ctx: ScenarioContext, next: Action): Action = {
+          new Action {
+            override def name: String = "test"
+
+            override def execute(session: Session): Unit = {
+              val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "SAI") check expectMsg(Response(session.userId, "SAI")).saveAs("Response")
+              a.build(ctx, next) ! session
+            }
+          }
+        }
+      }
+    }
+
+  val w = scenario("writeToFile")
       .exec{
         new ActionBuilder {
           override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -62,11 +78,15 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
-    s.inject(
-      constantUsersPerSec(1)during(1)
+    s1.inject(
+      constantUsersPerSec(4)during(3)randomized
+      //atOnceUsers(4)
     ),
-    write.inject(
-      nothingFor(2),
+    s2.inject(
+      constantUsersPerSec(2)during(3)randomized
+    ),
+    w.inject(
+      nothingFor(15),
       constantUsersPerSec(1)during(1)
     )
   ).protocols(akkaConfig).maxDuration(125)

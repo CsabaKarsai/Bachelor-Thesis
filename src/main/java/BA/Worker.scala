@@ -26,35 +26,36 @@ object Worker {
     var counter = 0
     var data = new Array[String](1000)
 
+    //la
+    var processedMessages = 1
+
+    //write header
+    bw.write("id;messageArriveTime;waitingTime;processingTime;processedMessages;SupervisorSendTime;messageType" + "\n")
+
     override def receive: Receive = {
 
-      case SupervisorToWorker(id, timestamp, messageType) => {
+      case SupervisorToWorker(id, supervisorSendTime, messageType) => {
+
+        val messageArriveTime = System.nanoTime()
+
+        if (counter == data.length){
+          for (i <- 0 until counter){
+            bw.write(data(i) + "\n")
+          }
+          counter = 0
+        }
 
         if(messageType.equals("default")){
-          val messageArriveTime = System.currentTimeMillis()
-          if (counter == data.length){
-            for (i <- 0 until counter){
-              bw.write(data(i) + "\n")
-            }
-            counter = 0
-          }
-          sender() ! Response(id, messageType)
-          data(counter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime, messageType, 1000)
-          counter = counter + 1
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 1000 * 1000, processedMessages)
+        }else if(messageType.equals("2000")){
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 2000 * 1000, processedMessages)
+        }else if(messageType.equals("SAI")){
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 500 * 1000, processedMessages)
         }
 
-        if(messageType.equals("2000")){
-          val messageArriveTime = System.currentTimeMillis()
-          if (counter == data.length){
-            for (i <- 0 until counter){
-              bw.write(data(i) + "\n")
-            }
-            counter = 0
-          }
-          sender() ! Response(id, messageType)
-          data(counter) = simulateWorkAndCalcLine(id, timestamp, messageArriveTime, messageType, 2000)
-          counter = counter + 1
-        }
+        processedMessages = processedMessages + 1
+        sender() ! Response(id, messageType)
+        counter = counter + 1
 
       }
       case writeToFileRequest => {
@@ -69,22 +70,25 @@ object Worker {
       }
     }
 
-    def simulateWorkAndCalcLine(id: Long, timestamp: Long, messageArriveTime: Long, messageType: String, ProcessingTime: Long) : String = {
-      var firstHalfToWrite = ("Request id: " + id
-        + " Waiting time: " + (System.currentTimeMillis() - timestamp))
+    def simulateWorkAndCalcLine(id: Long, supervisorSendTime: Long, messageArriveTime: Long, messageType: String, processingTime: Long, processedMessages: Long) : String = {
+      var firstHalfToWrite = ("" + id
+        + ";" + (messageArriveTime / 1000)
+        + ";" + (System.nanoTime() - supervisorSendTime) / 1000)
       //später durch negEx ersetzen
-      workFor(ProcessingTime)
-      var secondHalfToWrite = " Processing time: " + (System.currentTimeMillis() - messageArriveTime) +
-        " Request type: " + messageType
+      workFor(processingTime)
+      var secondHalfToWrite = ";" + ((System.nanoTime() - messageArriveTime) / 1000) +
+        ";" + processedMessages +
+        ";" + (supervisorSendTime / 1000) +
+        ";" + messageType
       var stringToWrite = firstHalfToWrite + secondHalfToWrite
       stringToWrite
     }
 
-    def workFor(timeInMillis: Long) : Any = {
-      var timerStartTime = System.currentTimeMillis()
+    def workFor(timeInMicros: Long) : Any = {
+      var timerStartTime = System.nanoTime()
       var break = 0
       while(break == 0){
-        if(System.currentTimeMillis() - timerStartTime > timeInMillis){
+        if(System.nanoTime() - timerStartTime > (timeInMicros * 1000)){
           break = 1
         }
       }
@@ -92,7 +96,7 @@ object Worker {
 
     def getNegExNumber(lambda : Double) : Double = {
       val random = new Random(System.currentTimeMillis())
-      val randomNumber = random.nextDouble()
+      var randomNumber = random.nextDouble()
       log(1 - randomNumber)  / (-lambda)
     }
 
