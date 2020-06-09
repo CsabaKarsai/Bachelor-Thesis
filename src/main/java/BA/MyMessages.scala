@@ -1,10 +1,10 @@
 package BA
 
-case class Request(id: Long, requestType: String)
+case class Request(id: Long, messageType: String)
 
-case class Response(id: Long, requestType: String)
+case class Response(id: Long, messageType: String)
 
-case class SupervisorToWorker(id: Long, timestamp: Long, requestType: String)
+case class SupervisorToWorker(id: Long, timestamp: Long, messageType: String)
 
 case class writeToFileRequest()
 

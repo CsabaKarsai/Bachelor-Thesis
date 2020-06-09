@@ -25,11 +25,11 @@ object Supervisor {
     val fw = new FileWriter(file, true)
     val bw = new BufferedWriter(fw)
     var counter = 0
-    var data = new Array[String](2)
+    var data = new Array[String](1000)
 
     override def receive: Receive = {
 
-      case Request(id, requestType) => {
+      case Request(id, messageType) => {
 
         val messageArriveTime = System.currentTimeMillis()
         if (counter == data.length){
@@ -41,7 +41,7 @@ object Supervisor {
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout = Timeout(30 seconds)
         val timestamp = System.currentTimeMillis()
-        (w1 ? SupervisorToWorker(id, timestamp, requestType)).pipeTo(sender())
+        (w1 ? SupervisorToWorker(id, timestamp, messageType)).pipeTo(sender())
         data(counter) = "Request id: " + id + " Bearbeitungszeit: " + (System.currentTimeMillis() - messageArriveTime)
         counter = counter + 1
 

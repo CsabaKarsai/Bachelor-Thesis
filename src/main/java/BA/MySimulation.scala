@@ -23,19 +23,19 @@ class MySimulation extends Simulation {
   // scenario definition
   val s = scenario("Request-Response")
     .exec {
-    new ActionBuilder {
-      override def build(ctx: ScenarioContext, next: Action): Action = {
-        new Action {
-          override def name: String = "test"
+      new ActionBuilder {
+        override def build(ctx: ScenarioContext, next: Action): Action = {
+          new Action {
+            override def name: String = "test"
 
-          override def execute(session: Session): Unit = {
-            val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "default") check expectMsg(Response(session.userId, "default")).saveAs("Response")
-            a.build(ctx, next) ! session
+            override def execute(session: Session): Unit = {
+              val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "2000") check expectMsg(Response(session.userId, "2000")).saveAs("Response")
+              a.build(ctx, next) ! session
+            }
           }
         }
       }
     }
-  }
   val write = scenario("writeToFile")
       .exec{
         new ActionBuilder {
@@ -62,8 +62,11 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
-    s.inject(constantUsersPerSec(4)during(3)),
-    write.inject(nothingFor(4),
+    s.inject(
+      constantUsersPerSec(1)during(1)
+    ),
+    write.inject(
+      nothingFor(2),
       constantUsersPerSec(1)during(1)
     )
   ).protocols(akkaConfig).maxDuration(125)
