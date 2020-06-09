@@ -2,7 +2,7 @@ package BA
 
 import java.io.{BufferedWriter, File, FileWriter}
 
-import akka.actor.{Actor, Props}
+import akka.actor.Actor
 
 import scala.math._
 import scala.util.Random
@@ -37,7 +37,6 @@ object Worker {
       case SupervisorToWorker(id, supervisorSendTime, messageType) => {
 
         val messageArriveTime = System.nanoTime()
-
         if (counter == data.length){
           for (i <- 0 until counter){
             bw.write(data(i) + "\n")
@@ -74,7 +73,6 @@ object Worker {
       var firstHalfToWrite = ("" + id
         + ";" + (messageArriveTime / 1000)
         + ";" + (System.nanoTime() - supervisorSendTime) / 1000)
-      //später durch negEx ersetzen
       workFor(processingTime)
       var secondHalfToWrite = ";" + ((System.nanoTime() - messageArriveTime) / 1000) +
         ";" + processedMessages +

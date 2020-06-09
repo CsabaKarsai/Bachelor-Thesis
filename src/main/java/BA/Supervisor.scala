@@ -28,7 +28,7 @@ object Supervisor {
     var data = new Array[String](1000)
 
     //write header
-    bw.write("id;messageArriveTime;processingTime;messagesProcessed;supervisorSendTime;messageType" + "\n")
+    bw.write("id;messageArriveTime;processingTime;messagesProcessed;messageType" + "\n")
 
     //processedMessages
     var processedMessages = 1
@@ -53,7 +53,6 @@ object Supervisor {
           ";" + (messageArriveTime/1000) +
           ";" + ((System.nanoTime() - messageArriveTime) / 1000) +
           ";" + processedMessages +
-          ";" + (supervisorSendTime / 1000) +
           ";" + messageType
         counter = counter + 1
         processedMessages = processedMessages + 1
