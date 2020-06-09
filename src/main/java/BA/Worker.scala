@@ -17,7 +17,7 @@ object Worker {
   class Worker(workerID: Long) extends Actor {
 
     //set ID of this particular worker to the one given in constructor
-    var myWorkerID = workerID
+    var myWorkerID: Long = workerID
     //println("myWorkerID: " + myWorkerID + " time: " + System.currentTimeMillis())
 
     val file = new File("./results/Worker" + myWorkerID + ".txt")
@@ -34,7 +34,7 @@ object Worker {
 
     override def receive: Receive = {
 
-      case SupervisorToWorker(id, supervisorSendTime, messageType) => {
+      case SupervisorToWorker(id, supervisorSendTime, messageType) =>
 
         val messageArriveTime = System.nanoTime()
         if (counter == data.length){
@@ -56,8 +56,7 @@ object Worker {
         sender() ! Response(id, messageType)
         counter = counter + 1
 
-      }
-      case writeToFileRequest => {
+      case writeToFileRequest =>
 
         for (i <- 0 until counter){
           bw.write(data(i) + "\n")
@@ -66,24 +65,23 @@ object Worker {
         counter = 0
         sender() ! writeToFileResponse
 
-      }
     }
 
     def simulateWorkAndCalcLine(id: Long, supervisorSendTime: Long, messageArriveTime: Long, messageType: String, processingTime: Long, processedMessages: Long) : String = {
-      var firstHalfToWrite = ("" + id
+      val firstHalfToWrite = ("" + id
         + ";" + (messageArriveTime / 1000)
         + ";" + (System.nanoTime() - supervisorSendTime) / 1000)
       workFor(processingTime)
-      var secondHalfToWrite = ";" + ((System.nanoTime() - messageArriveTime) / 1000) +
+      val secondHalfToWrite = ";" + ((System.nanoTime() - messageArriveTime) / 1000) +
         ";" + processedMessages +
         ";" + (supervisorSendTime / 1000) +
         ";" + messageType
-      var stringToWrite = firstHalfToWrite + secondHalfToWrite
+      val stringToWrite = firstHalfToWrite + secondHalfToWrite
       stringToWrite
     }
 
     def workFor(timeInMicros: Long) : Any = {
-      var timerStartTime = System.nanoTime()
+      val timerStartTime = System.nanoTime()
       var break = 0
       while(break == 0){
         if(System.nanoTime() - timerStartTime > (timeInMicros * 1000)){
@@ -94,7 +92,7 @@ object Worker {
 
     def getNegExNumber(lambda : Double) : Double = {
       val random = new Random(System.currentTimeMillis())
-      var randomNumber = random.nextDouble()
+      val randomNumber = random.nextDouble()
       log(1 - randomNumber)  / (-lambda)
     }
 

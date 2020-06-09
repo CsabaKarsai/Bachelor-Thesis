@@ -1,27 +1,28 @@
 package BA
 
 import _root_.io.gatling.core.Predef._
-import akka.actor.ActorSystem
+import akka.actor.{ActorRef, ActorSystem}
 import com.chatwork.gatling.akka.Predef._
-import com.typesafe.config.ConfigFactory
+import com.chatwork.gatling.akka.config.AkkaProtocol
+import com.typesafe.config.{Config, ConfigFactory}
 import io.gatling.core.action.Action
 import io.gatling.core.action.builder.ActionBuilder
 import io.gatling.core.session.Session
-import io.gatling.core.structure.ScenarioContext
+import io.gatling.core.structure.{ScenarioBuilder, ScenarioContext}
 
 class MySimulation extends Simulation {
 
-  val config = ConfigFactory.load()
-  implicit val system = ActorSystem("MySimulation", config)
+  val config: Config = ConfigFactory.load()
+  implicit val system: ActorSystem = ActorSystem("MySimulation", config)
 
   // gatling-akka protocol configuration
-  val akkaConfig = akkaActor.askTimeout(125)
+  val akkaConfig: AkkaProtocol = akkaActor.askTimeout(125)
 
   // recipient actorRef
-  val actorUnderTest = system.actorOf(Supervisor.MySupervisor)
+  val actorUnderTest: ActorRef = system.actorOf(Supervisor.MySupervisor)
 
   // scenario definition
-  val s1 = scenario("Request-Response")
+  val s1: ScenarioBuilder = scenario("Request-Response")
     .exec {
       new ActionBuilder {
         override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -36,7 +37,7 @@ class MySimulation extends Simulation {
         }
       }
     }
-  val s2 = scenario("SAIRequest-SAIResponse")
+  val s2: ScenarioBuilder = scenario("SAIRequest-SAIResponse")
     .exec {
       new ActionBuilder {
         override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -52,7 +53,7 @@ class MySimulation extends Simulation {
       }
     }
 
-  val w = scenario("writeToFile")
+  val w: ScenarioBuilder = scenario("writeToFile")
       .exec{
         new ActionBuilder {
           override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -79,15 +80,15 @@ class MySimulation extends Simulation {
     )
     */
     s1.inject(
-      constantUsersPerSec(4)during(3)randomized
+      constantUsersPerSec(4)during 3 randomized
       //atOnceUsers(4)
     ),
     s2.inject(
-      constantUsersPerSec(2)during(3)randomized
+      constantUsersPerSec(2)during 3 randomized
     ),
     w.inject(
       nothingFor(15),
-      constantUsersPerSec(1)during(1)
+      constantUsersPerSec(1)during 1
     )
   ).protocols(akkaConfig).maxDuration(125)
 

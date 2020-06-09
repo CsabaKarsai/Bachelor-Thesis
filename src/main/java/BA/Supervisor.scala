@@ -35,7 +35,7 @@ object Supervisor {
 
     override def receive: Receive = {
 
-      case Request(id, messageType) => {
+      case Request(id, messageType) =>
 
         val messageArriveTime = System.nanoTime()
 
@@ -46,7 +46,7 @@ object Supervisor {
           counter = 0
         }
         implicit val ec: ExecutionContext = context.dispatcher
-        implicit val timeout = Timeout(30 seconds)
+        implicit val timeout: Timeout = Timeout(30 seconds)
         val supervisorSendTime = System.nanoTime()
         (w1 ? SupervisorToWorker(id, supervisorSendTime, messageType)).pipeTo(sender())
         data(counter) = "" + id +
@@ -57,8 +57,7 @@ object Supervisor {
         counter = counter + 1
         processedMessages = processedMessages + 1
 
-      }
-      case writeToFileRequest => {
+      case writeToFileRequest =>
 
         for (i <- 0 until counter){
           bw.write(data(i) + "\n")
@@ -66,12 +65,10 @@ object Supervisor {
         bw.close()
         counter = 0
         implicit val ec: ExecutionContext = context.dispatcher
-        implicit val timeout = Timeout(30 seconds)
+        implicit val timeout: Timeout = Timeout(30 seconds)
         for(i <- 0 to 3){
           (w1 ? writeToFileRequest).pipeTo(sender())
         }
-
-      }
 
     }
 
