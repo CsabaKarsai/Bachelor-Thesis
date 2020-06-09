@@ -22,7 +22,7 @@ class MySimulation extends Simulation {
   val actorUnderTest: ActorRef = system.actorOf(Supervisor.MySupervisor)
 
   // scenario definition
-  val s1: ScenarioBuilder = scenario("Request-Response")
+  val default_Scenario: ScenarioBuilder = scenario("default_Request-default_Response")
     .exec {
       new ActionBuilder {
         override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -30,14 +30,14 @@ class MySimulation extends Simulation {
             override def name: String = "test"
 
             override def execute(session: Session): Unit = {
-              val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "default") check expectMsg(Response(session.userId, "default")).saveAs("Response")
+              val a = akkaActor("default_Request").to(actorUnderTest) ? Request(session.userId, "default") check expectMsg(Response(session.userId, "default")).saveAs("default_Response")
               a.build(ctx, next) ! session
             }
           }
         }
       }
     }
-  val s2: ScenarioBuilder = scenario("SAIRequest-SAIResponse")
+  val SAI_Scenario: ScenarioBuilder = scenario("SAI_Request-SAI_Response")
     .exec {
       new ActionBuilder {
         override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -45,7 +45,52 @@ class MySimulation extends Simulation {
             override def name: String = "test"
 
             override def execute(session: Session): Unit = {
-              val a = akkaActor("Request").to(actorUnderTest) ? Request(session.userId, "SAI") check expectMsg(Response(session.userId, "SAI")).saveAs("Response")
+              val a = akkaActor("SAI_Request").to(actorUnderTest) ? Request(session.userId, "SAI") check expectMsg(Response(session.userId, "SAI")).saveAs("SAI_Response")
+              a.build(ctx, next) ! session
+            }
+          }
+        }
+      }
+    }
+  val UL_Scenario: ScenarioBuilder = scenario("UL_Request-UL_Response")
+    .exec {
+      new ActionBuilder {
+        override def build(ctx: ScenarioContext, next: Action): Action = {
+          new Action {
+            override def name: String = "test"
+
+            override def execute(session: Session): Unit = {
+              val a = akkaActor("UL_Request").to(actorUnderTest) ? Request(session.userId, "UL") check expectMsg(Response(session.userId, "UL")).saveAs("UL_Response")
+              a.build(ctx, next) ! session
+            }
+          }
+        }
+      }
+    }
+  val UL_GPRS_Scenario: ScenarioBuilder = scenario("UL_GPRS_Request-UL_GPRS_Response")
+    .exec {
+      new ActionBuilder {
+        override def build(ctx: ScenarioContext, next: Action): Action = {
+          new Action {
+            override def name: String = "test"
+
+            override def execute(session: Session): Unit = {
+              val a = akkaActor("UL_GPRS_Request").to(actorUnderTest) ? Request(session.userId, "UL_GPRS") check expectMsg(Response(session.userId, "UL_GPRS")).saveAs("UL_GPRS_Response")
+              a.build(ctx, next) ! session
+            }
+          }
+        }
+      }
+    }
+  val CL_Scenario: ScenarioBuilder = scenario("CL_Request-CL_Response")
+    .exec {
+      new ActionBuilder {
+        override def build(ctx: ScenarioContext, next: Action): Action = {
+          new Action {
+            override def name: String = "test"
+
+            override def execute(session: Session): Unit = {
+              val a = akkaActor("CL_Request").to(actorUnderTest) ? Request(session.userId, "CL") check expectMsg(Response(session.userId, "CL")).saveAs("CL_Response")
               a.build(ctx, next) ! session
             }
           }
@@ -53,7 +98,7 @@ class MySimulation extends Simulation {
       }
     }
 
-  val w: ScenarioBuilder = scenario("writeToFile")
+  val write_Scenario: ScenarioBuilder = scenario("writeToFile")
       .exec{
         new ActionBuilder {
           override def build(ctx: ScenarioContext, next: Action): Action = {
@@ -79,15 +124,23 @@ class MySimulation extends Simulation {
       nothingFor(10)
     )
     */
-    s1.inject(
-      constantUsersPerSec(4)during 3 randomized
-      //atOnceUsers(4)
+    default_Scenario.inject(
+      constantUsersPerSec(1)during 60 * 10 randomized
     ),
-    s2.inject(
-      constantUsersPerSec(2)during 3 randomized
+    SAI_Scenario.inject(
+      constantUsersPerSec(1)during 60 * 10 randomized
     ),
-    w.inject(
-      nothingFor(15),
+    UL_Scenario.inject(
+      constantUsersPerSec(2)during 60 * 10 randomized
+    ),
+    UL_GPRS_Scenario.inject(
+      constantUsersPerSec(3)during 60 * 10 randomized
+    ),
+    CL_Scenario.inject(
+      constantUsersPerSec(4)during 60 * 10 randomized
+    ),
+    write_Scenario.inject(
+      nothingFor(60 * 11),
       constantUsersPerSec(1)during 1
     )
   ).protocols(akkaConfig).maxDuration(125)

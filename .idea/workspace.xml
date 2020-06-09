@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5fea7a-d173-4171-80bb-2369adfe81cd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BA/MySimulation.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BA/MySimulation.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BA/Supervisor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BA/Supervisor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BA/Worker.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BA/Worker.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Supervisor$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Supervisor$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Supervisor$mySupervisor$$anonfun$receive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Supervisor$mySupervisor$$anonfun$receive$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Supervisor$mySupervisor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Supervisor$mySupervisor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Supervisor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Supervisor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Worker$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Worker$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Worker$Worker$$anonfun$receive$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Worker$Worker$$anonfun$receive$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Worker$Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Worker$Worker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/BA/Worker.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/BA/Worker.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -17,11 +26,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="RunMySimulation.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/BA/RunMySimulation.scala">
+      <file leaf-file-name="MySimulation.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/BA/MySimulation.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="324">
+              <caret line="143" column="36" lean-forward="true" selection-start-line="143" selection-start-column="36" selection-end-line="143" selection-end-column="36" />
+              <folding>
+                <element signature="e#12#50#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -30,28 +42,16 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/BA/MyMessages.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="200">
-              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+              <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MySimulation.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/BA/MySimulation.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1280">
-              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-              <folding>
-                <element signature="e#12#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Supervisor.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Supervisor.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/BA/Supervisor.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+            <state relative-caret-position="38">
+              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
               <folding>
                 <element signature="e#12#61#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="Worker.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/BA/Worker.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+            <state relative-caret-position="264">
+              <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
               <folding>
                 <element signature="e#12#61#0" expanded="true" />
               </folding>
@@ -88,9 +88,9 @@
         <option value="$PROJECT_DIR$/src/main/java/BA/RunMySimulation.scala" />
         <option value="$PROJECT_DIR$/src/main/java/BA/MyMessages.scala" />
         <option value="$PROJECT_DIR$/results/Supervisor.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/BA/MySimulation.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/BA/Supervisor.scala" />
         <option value="$PROJECT_DIR$/src/main/java/BA/Worker.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/BA/Supervisor.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/BA/MySimulation.scala" />
       </list>
     </option>
   </component>
@@ -113,8 +113,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -152,7 +152,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -264,9 +264,9 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32965517" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32965517" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32965517" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32965517" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19335938" />
@@ -274,8 +274,8 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -287,14 +287,14 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32965517" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32965517" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -321,16 +321,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/BA/Worker.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="28" column="37" lean-forward="true" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-          <folding>
-            <element signature="e#12#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/BA/Supervisor.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
@@ -626,41 +616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/results/Worker2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/Worker3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/Worker4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/Worker1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/results/Supervisor.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/BA/RunMySimulation.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -671,36 +626,74 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/BA/MyMessages.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
-          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BA/MySimulation.scala">
+    <entry file="file://$PROJECT_DIR$/results/Worker2.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1280">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        <state relative-caret-position="40">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/Worker3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/Worker4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="20" lean-forward="true" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/Worker5.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/BA/Supervisor.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
           <folding>
-            <element signature="e#12#50#0" expanded="true" />
+            <element signature="e#12#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/BA/Worker.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+        <state relative-caret-position="264">
+          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
           <folding>
             <element signature="e#12#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BA/Supervisor.scala">
+    <entry file="file://$PROJECT_DIR$/results/Worker1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+        <state relative-caret-position="40">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/Supervisor.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/BA/MySimulation.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="143" column="36" lean-forward="true" selection-start-line="143" selection-start-column="36" selection-end-line="143" selection-end-column="36" />
           <folding>
-            <element signature="e#12#61#0" expanded="true" />
+            <element signature="e#12#50#0" expanded="true" />
           </folding>
         </state>
       </provider>

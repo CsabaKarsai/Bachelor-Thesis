@@ -18,8 +18,9 @@ object Supervisor {
 
   class mySupervisor extends Actor {
 
+    val poolSize = 5
     val w1: ActorRef =
-      context.actorOf(RoundRobinPool(4).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
+      context.actorOf(RoundRobinPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
     val file = new File("./results/Supervisor.txt")
     val fw = new FileWriter(file, true)
@@ -66,7 +67,7 @@ object Supervisor {
         counter = 0
         implicit val ec: ExecutionContext = context.dispatcher
         implicit val timeout: Timeout = Timeout(30 seconds)
-        for(i <- 0 to 3){
+        for(i <- 0 until poolSize){
           (w1 ? writeToFileRequest).pipeTo(sender())
         }
 
