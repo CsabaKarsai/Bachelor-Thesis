@@ -16,7 +16,7 @@ class MySimulation extends Simulation {
   implicit val system: ActorSystem = ActorSystem("MySimulation", config)
 
   // gatling-akka protocol configuration
-  val akkaConfig: AkkaProtocol = akkaActor.askTimeout(60 * 16)
+  val akkaConfig: AkkaProtocol = akkaActor.askTimeout(60 * 46)
 
   // recipient actorRef
   val actorUnderTest: ActorRef = system.actorOf(Supervisor.MySupervisor)
