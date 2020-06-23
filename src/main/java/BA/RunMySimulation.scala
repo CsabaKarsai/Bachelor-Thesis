@@ -5,6 +5,7 @@ import io.gatling.core.config.GatlingPropertiesBuilder
 
 object RunMySimulation {
   def main(args: Array[String]) {
+    //test
 
     val simClass = classOf[MySimulation].getName
     val props = new GatlingPropertiesBuilder
