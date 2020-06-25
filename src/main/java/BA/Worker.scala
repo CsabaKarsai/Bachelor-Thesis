@@ -47,13 +47,13 @@ object Worker {
         if(messageType.equals("default")){
           data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 1000 * 1000, processedMessages)
         }else if(messageType.equals("SAI")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(1), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(651.4284523), processedMessages)
         }else if(messageType.equals("UL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(2), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(80), processedMessages)
         }else if(messageType.equals("UL_GPRS")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(3), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(28.571428), processedMessages)
         }else if(messageType.equals("CL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(4), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(62.8571425), processedMessages)
         }
 
         processedMessages = processedMessages + 1
@@ -97,7 +97,7 @@ object Worker {
     def getNegExNumber(lambda : Double) : Long = {
       val random = new Random(System.currentTimeMillis())
       val randomNumber = random.nextDouble()
-      ((log(1 - randomNumber)  / (-lambda)) * 1000).toLong
+      ((log(1 - randomNumber)  / (-lambda)) * 1000000).toLong
     }
 
   }

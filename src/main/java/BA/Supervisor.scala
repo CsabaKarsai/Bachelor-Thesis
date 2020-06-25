@@ -19,7 +19,7 @@ object Supervisor {
   class mySupervisor extends Actor {
 
     val poolSize = 4
-    val supervisorTimeout: Timeout = Timeout((60 * 46) seconds)
+    val supervisorTimeout: Timeout = Timeout((60 * 24) seconds)
     val w1: ActorRef =
       context.actorOf(RoundRobinPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
