@@ -49,13 +49,13 @@ object Worker {
         if(messageType.equals("default")){
           data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 1000 * 1000, processedMessages)
         }else if(messageType.equals("SAI")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(594.2857143), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromGamma(10.659899772, 0.009338315), processedMessages)
         }else if(messageType.equals("UL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(80), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromGamma(10.659899772, 0.009338315), processedMessages)
         }else if(messageType.equals("UL_GPRS")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(28.571428), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromGamma(10.659899772, 0.009338315), processedMessages)
         }else if(messageType.equals("CL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(62.8571425), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromGamma(10.659899772, 0.009338315), processedMessages)
         }
 
         processedMessages = processedMessages + 1
