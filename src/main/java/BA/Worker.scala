@@ -6,10 +6,8 @@ import akka.actor.Actor
 
 import scala.math._
 import scala.util.Random
-import java.util.concurrent.atomic.AtomicLong
 
-import breeze.stats.distributions.Gamma
-import breeze.stats.distributions.Exponential
+import java.util.concurrent.atomic.AtomicLong
 
 object Worker {
 
@@ -49,13 +47,13 @@ object Worker {
         if(messageType.equals("default")){
           data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 1000 * 1000, processedMessages)
         }else if(messageType.equals("SAI")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromExp(594.2857143), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(651.4284523), processedMessages)
         }else if(messageType.equals("UL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromExp(80), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(80), processedMessages)
         }else if(messageType.equals("UL_GPRS")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromExp(28.571428), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(28.571428), processedMessages)
         }else if(messageType.equals("CL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromExp(62.8571425), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(62.8571425), processedMessages)
         }
 
         processedMessages = processedMessages + 1
@@ -96,16 +94,10 @@ object Worker {
       }
     }
 
-    def drawSampleFromExp(lambda : Double) : Long = {
-      val exp = Exponential(lambda)
-      (exp.draw() * 1000000).toLong
-    }
-
-    //draw a sample from a gamme distribution with breeze
-    def drawSampleFromGammaBreeze(shape: Double, rate : Double) : Long = {
-      //Gamma(shape, scale) with scale = 1 / rate
-      val gamma = Gamma(shape, 1 / rate)
-      gamma.draw().toLong
+    def getNegExNumber(lambda : Double) : Long = {
+      val random = new Random(System.currentTimeMillis())
+      val randomNumber = random.nextDouble()
+      ((log(1 - randomNumber)  / (-lambda)) * 1000000).toLong
     }
 
   }

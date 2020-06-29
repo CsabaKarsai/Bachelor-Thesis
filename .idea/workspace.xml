@@ -20,7 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7d5fea7a-d173-4171-80bb-2369adfe81cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <list id="655d1443-c383-4b6e-9925-51da4c00fa57" name="Revert &quot;worker SAI lambda and users per sec corrected&quot;" comment="Revert &quot;worker SAI lambda and users per sec corrected&quot;&#10;&#10;This reverts commit b6949781">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BA/MySimulation.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BA/MySimulation.scala" afterDir="false" />
@@ -42,6 +44,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+      <ranges>
+        <range start1="22" end1="23" start2="22" end2="25" changelist="7d5fea7a-d173-4171-80bb-2369adfe81cd" />
+        <range start1="43" end1="43" start2="45" end2="61" changelist="7d5fea7a-d173-4171-80bb-2369adfe81cd" />
+        <range start1="54" end1="55" start2="72" end2="72" changelist="655d1443-c383-4b6e-9925-51da4c00fa57" />
+        <range start1="56" end1="57" start2="73" end2="74" changelist="655d1443-c383-4b6e-9925-51da4c00fa57" />
+        <range start1="59" end1="65" start2="76" end2="77" changelist="655d1443-c383-4b6e-9925-51da4c00fa57" />
+        <range start1="129" end1="129" start2="141" end2="151" changelist="7d5fea7a-d173-4171-80bb-2369adfe81cd" />
+        <range start1="140" end1="140" start2="162" end2="166" changelist="7d5fea7a-d173-4171-80bb-2369adfe81cd" />
+        <range start1="142" end1="143" start2="168" end2="169" changelist="655d1443-c383-4b6e-9925-51da4c00fa57" />
+        <range start1="145" end1="146" start2="171" end2="172" changelist="655d1443-c383-4b6e-9925-51da4c00fa57" />
+        <range start1="162" end1="166" start2="188" end2="277" changelist="655d1443-c383-4b6e-9925-51da4c00fa57" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
@@ -52,17 +70,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/akka-benchmark" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\70_%_load" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="RunMySimulation" type="Application" factoryName="Application" temporary="true">
@@ -127,6 +139,16 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -139,11 +161,15 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;worker SAI lambda and users per sec corrected&quot;&#10;&#10;This reverts commit b6949781" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;worker SAI lambda and users per sec corrected&quot;&#10;&#10;This reverts commit b6949781" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="1047" y="502" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1593098551333">
+    <state x="884" y="266" key="CommitChangelistDialog2" timestamp="1593421711802">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1047" y="502" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1593098551333" />
+    <state x="884" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1593421711802" />
     <state width="2517" height="400" key="GridCell.Tab.0.bottom" timestamp="1593094341408">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -160,9 +186,94 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2517" height="400" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1593094341408" />
-    <state x="760" y="274" key="SettingsEditor" timestamp="1593155636908">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="760" y="274" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1593155636908" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>scala-sdk-2.11.11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>test</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.1.7</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

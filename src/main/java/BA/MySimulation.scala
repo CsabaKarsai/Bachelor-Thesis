@@ -131,9 +131,9 @@ class MySimulation extends Simulation {
     */
     SAI_Scenario.inject(
       nothingFor(60 * 1),
-      rampUsersPerSec(0)to(104)during(60 * 1),
-      constantUsersPerSec(104)during 60 * 15 randomized,
-      rampUsersPerSec(104)to(0)during(60 * 1),
+      rampUsersPerSec(0)to(114)during(60 * 1),
+      constantUsersPerSec(114)during 60 * 15 randomized,
+      rampUsersPerSec(114)to(0)during(60 * 1),
       nothingFor(60 * 1)
     ),
     UL_Scenario.inject(
