@@ -9,6 +9,8 @@ import scala.util.Random
 
 import java.util.concurrent.atomic.AtomicLong
 
+import breeze.stats.distributions._
+
 object Worker {
 
   val workerID = new AtomicLong(1)
@@ -47,13 +49,13 @@ object Worker {
         if(messageType.equals("default")){
           data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, 1000 * 1000, processedMessages)
         }else if(messageType.equals("SAI")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(651.4284523), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(594.2857143), processedMessages)
         }else if(messageType.equals("UL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(80), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(80), processedMessages)
         }else if(messageType.equals("UL_GPRS")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(28.571428), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(28.571428), processedMessages)
         }else if(messageType.equals("CL")){
-          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, getNegExNumber(62.8571425), processedMessages)
+          data(counter) = simulateWorkAndCalcLine(id, supervisorSendTime, messageArriveTime, messageType, drawSampleFromNegEx(62.8571425), processedMessages)
         }
 
         processedMessages = processedMessages + 1
@@ -94,10 +96,14 @@ object Worker {
       }
     }
 
-    def getNegExNumber(lambda : Double) : Long = {
-      val random = new Random(System.currentTimeMillis())
-      val randomNumber = random.nextDouble()
-      ((log(1 - randomNumber)  / (-lambda)) * 1000000).toLong
+    def drawSampleFromNegEx(lambda : Double) : Long = {
+      val negEx = new Exponential(lambda)
+      (negEx.draw() * 1000000).toLong
+    }
+
+    def drawSampleFromGamma(shape : Double, rate : Double) : Long = {
+      val gamma = new Gamma(shape, 1 / rate)
+      gamma.draw().toLong
     }
 
   }
