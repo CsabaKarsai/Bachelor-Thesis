@@ -116,23 +116,23 @@ class MySimulation extends Simulation {
   // inject configurations
   setUp(
     SAI_Scenario.inject(
-      rampUsersPerSec(0)to(520)during(60 * 1),
-      constantUsersPerSec(520)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(1040)during(60 * 1),
+      constantUsersPerSec(1040)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     UL_Scenario.inject(
-      rampUsersPerSec(0)to(70)during(60 * 1),
-      constantUsersPerSec(70)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(140)during(60 * 1),
+      constantUsersPerSec(140)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     UL_GPRS_Scenario.inject(
-      rampUsersPerSec(0)to(25)during(60 * 1),
-      constantUsersPerSec(25)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(50)during(60 * 1),
+      constantUsersPerSec(50)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     CL_Scenario.inject(
-      rampUsersPerSec(0)to(55)during(60 * 1),
-      constantUsersPerSec(55)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(110)during(60 * 1),
+      constantUsersPerSec(110)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     write_Scenario.inject(

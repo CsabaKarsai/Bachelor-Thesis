@@ -50,7 +50,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/results/Baseline, Gamma, 5x load" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/results/Baseline, Gamma, 10x load" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -58,18 +58,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 10x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 5x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 4x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 3x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 2x load" />
-      <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 1x load" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 10x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 5x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 4x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 3x load" />
       <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\Baseline, Gamma, 2x load" />
-      <recent name="C:\Users\csaba\IdeaProjects\akka-benchmark\results\70_%_load" />
     </key>
   </component>
   <component name="RunManager">
@@ -166,22 +166,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="884" y="266" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1593421711802" />
-    <state width="2517" height="399" key="GridCell.Tab.0.bottom" timestamp="1593442301121">
+    <state width="2517" height="399" key="GridCell.Tab.0.bottom" timestamp="1593446720596">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1593442301121" />
-    <state width="2517" height="399" key="GridCell.Tab.0.center" timestamp="1593442301121">
+    <state width="2517" height="399" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1593446720596" />
+    <state width="2517" height="399" key="GridCell.Tab.0.center" timestamp="1593446720596">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1593442301121" />
-    <state width="2517" height="399" key="GridCell.Tab.0.left" timestamp="1593442301121">
+    <state width="2517" height="399" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1593446720596" />
+    <state width="2517" height="399" key="GridCell.Tab.0.left" timestamp="1593446720596">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1593442301121" />
-    <state width="2517" height="399" key="GridCell.Tab.0.right" timestamp="1593442301121">
+    <state width="2517" height="399" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1593446720596" />
+    <state width="2517" height="399" key="GridCell.Tab.0.right" timestamp="1593446720596">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="399" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1593442301121" />
+    <state width="2517" height="399" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1593446720596" />
   </component>
   <component name="masterDetails">
     <states>
