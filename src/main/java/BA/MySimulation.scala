@@ -130,23 +130,23 @@ class MySimulation extends Simulation {
     ),
     */
     SAI_Scenario.inject(
-      rampUsersPerSec(0)to(104)during(60 * 1),
-      constantUsersPerSec(104)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(312)during(60 * 1),
+      constantUsersPerSec(312)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     UL_Scenario.inject(
-      rampUsersPerSec(0)to(14)during(60 * 1),
-      constantUsersPerSec(14)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(42)during(60 * 1),
+      constantUsersPerSec(42)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     UL_GPRS_Scenario.inject(
-      rampUsersPerSec(0)to(5)during(60 * 1),
-      constantUsersPerSec(5)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(15)during(60 * 1),
+      constantUsersPerSec(15)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     CL_Scenario.inject(
-      rampUsersPerSec(0)to(11)during(60 * 1),
-      constantUsersPerSec(11)during 60 * 15 randomized,
+      rampUsersPerSec(0)to(33)during(60 * 1),
+      constantUsersPerSec(33)during 60 * 15 randomized,
       nothingFor(60 * 1)
     ),
     write_Scenario.inject(
@@ -155,4 +155,6 @@ class MySimulation extends Simulation {
     )
   ).protocols(akkaConfig).maxDuration(60 * 18)
 
+
 }
+
