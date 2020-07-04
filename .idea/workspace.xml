@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7d5fea7a-d173-4171-80bb-2369adfe81cd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="7d5fea7a-d173-4171-80bb-2369adfe81cd" name="Default" comment="" />
     <list id="655d1443-c383-4b6e-9925-51da4c00fa57" name="Revert &quot;worker SAI lambda and users per sec corrected&quot;" comment="Revert &quot;worker SAI lambda and users per sec corrected&quot;&#10;&#10;This reverts commit b6949781" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
