@@ -114,6 +114,7 @@ class MySimulation extends Simulation {
         }
       }
   // inject configurations
+
   setUp(
     SAI_Scenario.inject(
       rampUsersPerSec(0)to(1040)during(60 * 1),
@@ -140,7 +141,16 @@ class MySimulation extends Simulation {
       constantUsersPerSec(1)during 1
     )
   ).protocols(akkaConfig).maxDuration(60 * 18)
-
-
+  /*
+  setUp(
+    UL_Scenario.inject(
+      constantUsersPerSec(1)during 60 * 2
+    ),
+    write_Scenario.inject(
+      nothingFor(60 * 2),
+      constantUsersPerSec(1)during 1
+    )
+  ).protocols(akkaConfig).maxDuration(60 * 2)
+  */
 }
 
