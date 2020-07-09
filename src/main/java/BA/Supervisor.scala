@@ -4,7 +4,7 @@ import java.io.{BufferedWriter, File, FileWriter}
 
 import akka.actor.{Actor, ActorRef, Props}
 import akka.pattern._
-import akka.routing.RoundRobinPool
+import akka.routing.{RandomPool, RoundRobinPool}
 import akka.util.Timeout
 
 import scala.concurrent.ExecutionContext
@@ -21,7 +21,7 @@ object Supervisor {
     val poolSize = 4
     val supervisorTimeout: Timeout = Timeout((60 * 18) seconds)
     val w1: ActorRef =
-      context.actorOf(RoundRobinPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
+      context.actorOf(RandomPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
     val file = new File("./results/Supervisor.txt")
     val fw = new FileWriter(file, true)
