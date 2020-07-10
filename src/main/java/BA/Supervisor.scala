@@ -21,7 +21,7 @@ object Supervisor {
     val poolSize = 4
     val supervisorTimeout: Timeout = Timeout((60 * 18) seconds)
     val w1: ActorRef =
-      context.actorOf(RandomPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
+      context.actorOf(RoundRobinPool(poolSize).props(Props(new Worker.Worker(Worker.workerID.getAndIncrement()))))
 
     val file = new File("./results/Supervisor.txt")
     val fw = new FileWriter(file, true)
