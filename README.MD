@@ -3,6 +3,7 @@
 ### Table of Contents
 
 - [Description](#description)
+- [Requirements](#requirements)
 - [Usage](#usage)
 - [Notes](#notes)
 - [Project Status](#project-status)
