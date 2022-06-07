@@ -1,4 +1,4 @@
-# Sudoku
+# Bachelor Thesis
 
 ### Table of Contents
 
