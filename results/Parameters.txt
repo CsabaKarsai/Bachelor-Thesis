@@ -1,0 +1,42 @@
+Simulation duration:
+    18 Minutes
+
+Gamma distributed processing times:
+    Shape=10.659899772, Rate=0.009338315
+
+Constant ramp-up of users during first minute to match rate of Poisson process
+
+Poisson Arrival process after first minute:
+    Parameter for SAI:  104 * 60 * 15 seconds
+    Parameter for UL: 14 * 60 * 15 seconds
+    Parameter for UL_GPRS: 5 * 60 * 15 seconds
+    Parameter for CL: 11 * 60 * 15 seconds
+
+Paste to MySmulation.scala:
+
+  setUp(
+    SAI_Scenario.inject(
+      rampUsersPerSec(0)to(104)during(60 * 1),
+      constantUsersPerSec(104)during 60 * 15 randomized,
+      nothingFor(60 * 1)
+    ),
+    UL_Scenario.inject(
+      rampUsersPerSec(0)to(14)during(60 * 1),
+      constantUsersPerSec(14)during 60 * 15 randomized,
+      nothingFor(60 * 1)
+    ),
+    UL_GPRS_Scenario.inject(
+      rampUsersPerSec(0)to(5)during(60 * 1),
+      constantUsersPerSec(5)during 60 * 15 randomized,
+      nothingFor(60 * 1)
+    ),
+    CL_Scenario.inject(
+      rampUsersPerSec(0)to(11)during(60 * 1),
+      constantUsersPerSec(11)during 60 * 15 randomized,
+      nothingFor(60 * 1)
+    ),
+    write_Scenario.inject(
+      nothingFor(60 * 17),
+      constantUsersPerSec(1)during 1
+    )
+  ).protocols(akkaConfig).maxDuration(60 * 18)
